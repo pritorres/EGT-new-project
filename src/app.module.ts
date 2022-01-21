@@ -2,7 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ProductModule } from './module/product/product.module';
+import { SupplierModule } from './module/supplier.mdule';
+import { ProductModule } from './module/product.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ProductModule } from './module/product/product.module';
       autoLoadEntities: true, // carga las entidades en el startup
     }),
     ProductModule,
+    SupplierModule,
   ],
   controllers: [AppController],
   providers: [AppService],
