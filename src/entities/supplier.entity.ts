@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Product } from '../entities/product.entity';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
 
 @Entity('supplier')
 export class Supplier {
@@ -15,5 +22,9 @@ export class Supplier {
   stock: boolean;
 
   @Column()
-  products: string;
+  productId: number;
+
+  @ManyToOne(() => Product)
+  @JoinColumn({ name: 'productId' })
+  product: Product;
 }

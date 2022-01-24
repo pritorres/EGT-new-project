@@ -13,10 +13,6 @@ export class CreateSupplierDto {
   @IsNotEmpty()
   @IsPositive()
   readonly stock: boolean;
-  @IsString()
-  @IsNotEmpty()
-  @IsPositive()
-  readonly Products: string;
 }
 
 export class UpdateSupplierDto extends PartialType(CreateSupplierDto) {}
