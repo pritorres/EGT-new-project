@@ -11,14 +11,23 @@ import {
 import { Product } from 'src/entities/product.entity';
 import { ProductService } from '../services/product.service';
 import { CreateProductDto, UpdateProductDto } from '../dto/product.dto';
+import { ProductCategory } from 'src/entities/product_category.entity';
+import { ProductCategoryService } from 'src/services/product-category.service';
 
 @Controller('products')
 export class ProductController {
-  constructor(private readonly productService: ProductService) {}
+  constructor(
+    private readonly productService: ProductService,
+    private readonly productCategoryServices: ProductCategoryService,
+  ) {}
 
   @Get()
   async getAllProduct(): Promise<Product[]> {
     return await this.productService.getAllProduct();
+  }
+  @Get('/categories')
+  async getAllByCategories(): Promise<ProductCategory[]> {
+    return await this.productCategoryServices.getAll();
   }
 
   @Get(':id')

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Product } from 'src/entities/product.entity';
 import { Supplier } from 'src/entities/supplier.entity';
 import { Repository } from 'typeorm';
 import { CreateSupplierDto, UpdateSupplierDto } from '../dto/supplier.dto';
@@ -17,7 +18,16 @@ export class SupplierService {
   }
 
   async getOneSupplier(id: number): Promise<Supplier> {
-    return this.supplierRepo.findOne(id);
+    return this.supplierRepo
+      .createQueryBuilder('sup')
+      .innerJoinAndMapOne(
+        'sup.product',
+        Product,
+        'prod',
+        'sup.productId = prod.id',
+      )
+      .where('sup.id = :id', { id })
+      .getOneOrFail();
   }
 
   async createSupplier(body: CreateSupplierDto): Promise<Supplier> {
