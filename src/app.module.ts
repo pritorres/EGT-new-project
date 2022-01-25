@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SupplierModule } from './module/supplier.mdule';
 import { ProductModule } from './module/product.module';
-import { CategoryService } from './services/category.service';
+import { CategoryModule } from './module/category.module';
 
 @Module({
   imports: [
@@ -22,8 +22,9 @@ import { CategoryService } from './services/category.service';
     }),
     ProductModule,
     SupplierModule,
+    CategoryModule,
   ],
   controllers: [AppController],
-  providers: [AppService, CategoryService],
+  providers: [AppService],
 })
 export class AppModule {}

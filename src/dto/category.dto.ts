@@ -2,7 +2,7 @@ import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 import { PartialType } from '@nestjs/mapped-types';
 
-export class createCategoryDto {
+export class CreateCategoryDto {
   @IsNumber()
   @IsNotEmpty()
   id: number;
@@ -11,4 +11,4 @@ export class createCategoryDto {
   readonly name: string;
 }
 
-export class UpdateCategoryDto extends PartialType(createCategoryDto) {}
+export class UpdateCategoryDto extends PartialType(CreateCategoryDto) {}
