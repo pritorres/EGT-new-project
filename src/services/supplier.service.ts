@@ -24,7 +24,7 @@ export class SupplierService {
         'sup.product',
         Product,
         'prod',
-        'sup.productId = prod.id',
+        'sup.product_id = prod.id',
       )
       .where('sup.id = :id', { id })
       .getOneOrFail();

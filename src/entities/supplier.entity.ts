@@ -22,7 +22,7 @@ export class Supplier {
   stock: boolean;
 
   @Column()
-  productId: number;
+  product_id: number;
 
   @ManyToOne(() => Product)
   @JoinColumn({ name: 'productId' })

@@ -1,24 +1,29 @@
-import { ViewEntity, ViewColumn, Connection } from 'typeorm';
-import { Brand } from '../entities/brand.entity';
-import { Product } from '../entities/product.entity';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Brand } from './brand.entity';
+import { Product } from './product.entity';
 
-@ViewEntity({
-  expression: (connection: Connection) =>
-    connection
-      .createQueryBuilder()
-      .select('brand.id', 'id')
-      .addSelect('brand.name', 'brand_name')
-      .addSelect('product.name', 'product_name')
-      .from(Brand, 'brand')
-      .leftJoin(Product, 'product', 'product.id = brand.product_id'),
-})
+@Entity('brand_Product')
 export class BrandProduct {
-  @ViewColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
-  @ViewColumn()
-  name_brand: string;
+  @Column()
+  brand_id: number;
 
-  @ViewColumn()
-  name_product: string;
+  @Column()
+  product_id: number;
+
+  @ManyToMany(() => Brand)
+  @JoinTable({ name: 'bran_id' })
+  brand: Brand;
+
+  @ManyToMany(() => Product)
+  @JoinTable({ name: 'product_id' })
+  product: Product;
 }
