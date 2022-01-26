@@ -26,5 +26,5 @@ export class Supplier {
 
   @ManyToOne(() => Product)
   @JoinColumn({ name: 'productId' })
-  product: Product;
+  product: Product[];
 }
